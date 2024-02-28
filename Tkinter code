@@ -1,0 +1,40 @@
+import tkinter as tk
+from tkinter import ttk
+import tkinter.messagebox
+import ctypes
+import sys
+
+class FlashlightApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Flashlight App")
+        self.root.geometry("300x150")
+
+        self.flashlight_status = tk.StringVar()
+        self.flashlight_status.set("OFF")
+
+        self.label = ttk.Label(root, text="Flashlight Status:")
+        self.label.pack(pady=10)
+
+        self.status_label = ttk.Label(root, textvariable=self.flashlight_status, font=("Helvetica", 20))
+        self.status_label.pack(pady=10)
+
+        self.toggle_button = ttk.Button(root, text="Toggle Flashlight", command=self.toggle_flashlight)
+        self.toggle_button.pack(pady=10)
+
+    def toggle_flashlight(self):
+        current_status = self.flashlight_status.get()
+
+        if current_status == "OFF":
+            self.flashlight_status.set("ON")
+            # You can add code here to control the flashlight hardware or simulate it
+            # For example: code to turn on flashlight on a mobile device
+        else:
+            self.flashlight_status.set("OFF")
+            # You can add code here to turn off the flashlight hardware or simulate it
+            # For example: code to turn off flashlight on a mobile device
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = FlashlightApp(root)
+    root.mainloop()
