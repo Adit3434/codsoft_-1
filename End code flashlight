@@ -1,0 +1,15 @@
+    private static boolean flashLightOff(Context context) {
+        try {
+            if (mCameraManager == null) {
+                initCameraManagerInstance(context);
+            }
+            String cameraId = mCameraManager.getCameraIdList()[0];
+            mCameraManager.setTorchMode(cameraId, false);
+            // Sending broadcast to update the UI
+            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(ACTION_UPDATE_UI));
+        } catch (CameraAccessException e) {
+            Log.e(TAG, "flashLightOff(): " + e);
+            return false;
+        }
+        return true;
+    }
